@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Compile Update="EmployeeEdit.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="EmployeeHome.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Form1.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="EmployeeAdd.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="NewAdminAdd.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="NewAdminUpdate.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="NewAdminHome.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="NewUserReg.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="UserCarAdd.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="UserCarHome.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="UserCarUpdate.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="UserHome.vb">
+      <SubType>Form</SubType>
+    </Compile>
+  </ItemGroup>
+</Project>
