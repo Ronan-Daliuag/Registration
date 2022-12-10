@@ -35,7 +35,7 @@ Partial Class Form1
         '
         Me.Label1.AutoSize = True
         Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 20.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
-        Me.Label1.Location = New System.Drawing.Point(192, 77)
+        Me.Label1.Location = New System.Drawing.Point(141, 75)
         Me.Label1.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(395, 39)
@@ -44,7 +44,7 @@ Partial Class Form1
         '
         'TB1
         '
-        Me.TB1.Location = New System.Drawing.Point(282, 235)
+        Me.TB1.Location = New System.Drawing.Point(231, 233)
         Me.TB1.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.TB1.Name = "TB1"
         Me.TB1.Size = New System.Drawing.Size(324, 27)
@@ -52,7 +52,7 @@ Partial Class Form1
         '
         'Button1
         '
-        Me.Button1.Location = New System.Drawing.Point(250, 407)
+        Me.Button1.Location = New System.Drawing.Point(199, 405)
         Me.Button1.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(105, 52)
@@ -62,7 +62,7 @@ Partial Class Form1
         '
         'Button2
         '
-        Me.Button2.Location = New System.Drawing.Point(430, 407)
+        Me.Button2.Location = New System.Drawing.Point(379, 405)
         Me.Button2.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.Button2.Name = "Button2"
         Me.Button2.Size = New System.Drawing.Size(105, 52)
@@ -73,7 +73,7 @@ Partial Class Form1
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(186, 238)
+        Me.Label2.Location = New System.Drawing.Point(135, 236)
         Me.Label2.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(78, 20)
@@ -83,7 +83,7 @@ Partial Class Form1
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(186, 295)
+        Me.Label3.Location = New System.Drawing.Point(135, 293)
         Me.Label3.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(73, 20)
@@ -92,7 +92,7 @@ Partial Class Form1
         '
         'TB2
         '
-        Me.TB2.Location = New System.Drawing.Point(282, 292)
+        Me.TB2.Location = New System.Drawing.Point(231, 290)
         Me.TB2.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.TB2.Name = "TB2"
         Me.TB2.PasswordChar = Global.Microsoft.VisualBasic.ChrW(42)
@@ -103,7 +103,7 @@ Partial Class Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 20.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(796, 677)
+        Me.ClientSize = New System.Drawing.Size(718, 595)
         Me.Controls.Add(Me.TB2)
         Me.Controls.Add(Me.Label3)
         Me.Controls.Add(Me.Label2)

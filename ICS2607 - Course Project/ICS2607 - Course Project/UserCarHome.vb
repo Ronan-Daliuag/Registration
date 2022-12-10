@@ -110,7 +110,7 @@ Public Class UserCarHome
                     sqlCmd.Connection = sqlConn
 
                     With sqlCmd
-                        .CommandText = "DELETE form from form join emission on form.EMM_CODE = emission.EMM_CODE
+                        .CommandText = " SET FOREIGN_KEY_CHECKS=0;DELETE form from form join emission on form.EMM_CODE = emission.EMM_CODE
                                 join vehicle_info on emission.EMM_CODE = vehicle_info.EMM_CODE AND vehicle_info.VIN = @VIN;
                                 DELETE vehicle_info, car_model, emission from vehicle_info join  car_model on car_model.CM_CODE = vehicle_info.CM_CODE 
                                 AND vehicle_info.VIN = @VIN join emission on vehicle_info.EMM_CODE=emission.EMM_CODE;"
