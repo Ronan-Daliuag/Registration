@@ -22,7 +22,8 @@ Public Class EmployeeEdit
         sqlConn.Open()
         query = "SELECT  FORM_NUM, concat(LAST_NAME,', ',FIRST_NAME) As Name, CERT_EMM_COMPLIANCE AS Q1, OG_SALES_INV AS Q2, CERT_COVER AS Q3, POLICE_CLEARANCE AS Q4, 
                 CERT_STOCK AS Q5, PAYMENT_REF_NUM AS Q6, VEH_COLOR, PLATE_NUM from applicant inner join emission
-                inner join form inner join vehicle_info where form.FORM_NUM=" & myformnum & " and form.EMM_CODE=emission.EMM_CODE AND emission.EMM_CODE=vehicle_info.EMM_CODE;"
+                inner join form inner join vehicle_info where form.FORM_NUM=" & myformnum & " and form.EMM_CODE=emission.EMM_CODE AND emission.EMM_CODE=vehicle_info.EMM_CODE
+                and applicant.APP_CODE=form.APP_CODE;"
 
         sqlCmd = New MySqlCommand(query, sqlConn)
 

@@ -31,6 +31,8 @@ Public Class EmployeeHome
 
     Private Sub UserHome_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         loadTable()
+        appnum = ""
+        formnum = ""
     End Sub
 
     Private Sub B1_Click(sender As Object, e As EventArgs) Handles B1.Click

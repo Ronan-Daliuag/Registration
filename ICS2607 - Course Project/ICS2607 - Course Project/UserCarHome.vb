@@ -66,7 +66,7 @@ Public Class UserCarHome
             sqlConn.ConnectionString = Server
 
             sqlConn.Open()
-            query = "Select COUNT(VIN) as num from vehicle_info inner join applicant where vehicle_info.APP_CODE=" & str & ";"
+            query = "Select COUNT(VIN) as num from vehicle_info inner join applicant where vehicle_info.APP_CODE=" & str & " AND vehicle_info.APP_CODE=applicant.APP_CODE;"
 
             sqlCmd = New MySqlCommand(query, sqlConn)
             'Dim ncmd As New MySqlCommand(query, sqlConn)
