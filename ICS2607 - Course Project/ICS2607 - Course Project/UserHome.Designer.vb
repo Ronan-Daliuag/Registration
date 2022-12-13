@@ -32,7 +32,7 @@ Partial Class UserHome
         'Button1
         '
         Me.Button1.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
-        Me.Button1.Location = New System.Drawing.Point(151, 253)
+        Me.Button1.Location = New System.Drawing.Point(172, 236)
         Me.Button1.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(138, 64)
@@ -44,7 +44,7 @@ Partial Class UserHome
         '
         Me.LB1.AutoSize = True
         Me.LB1.Font = New System.Drawing.Font("Microsoft Sans Serif", 20.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
-        Me.LB1.Location = New System.Drawing.Point(214, 91)
+        Me.LB1.Location = New System.Drawing.Point(237, 90)
         Me.LB1.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.LB1.Name = "LB1"
         Me.LB1.Size = New System.Drawing.Size(252, 39)
@@ -54,17 +54,18 @@ Partial Class UserHome
         'Label4
         '
         Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(250, 151)
+        Me.Label4.Location = New System.Drawing.Point(13, 151)
         Me.Label4.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(169, 20)
+        Me.Label4.Size = New System.Drawing.Size(689, 20)
         Me.Label4.TabIndex = 14
-        Me.Label4.Text = "hi hello hello hello hello"
+        Me.Label4.Text = "To view your registered vehicle, click the button to the left. And click to the r" &
+    "ight to add another vehicle"
         '
         'Button2
         '
         Me.Button2.Font = New System.Drawing.Font("Segoe UI", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
-        Me.Button2.Location = New System.Drawing.Point(369, 253)
+        Me.Button2.Location = New System.Drawing.Point(390, 236)
         Me.Button2.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.Button2.Name = "Button2"
         Me.Button2.Size = New System.Drawing.Size(138, 64)
@@ -85,7 +86,7 @@ Partial Class UserHome
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 20.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(665, 406)
+        Me.ClientSize = New System.Drawing.Size(715, 406)
         Me.Controls.Add(Me.Button4)
         Me.Controls.Add(Me.Button2)
         Me.Controls.Add(Me.Label4)

@@ -1,4 +1,3 @@
-drop database registration;
 CREATE DATABASE registration;
 USE registration;
 SET FOREIGN_KEY_CHECKS=0;
@@ -14,8 +13,6 @@ SEX CHAR,
 ADDRESS VARCHAR(100),
 GARAGE BOOLEAN,
 CONT_NUM VARCHAR(11)
-#FOREIGN KEY (BRANCH_CODE) REFERENCES registrar(BRANCH_CODE)
-#FOREIGN KEY (REGION_CODE) REFERENCES region(REGION_CODE)
 );
 
 CREATE TABLE driver_license(
@@ -34,8 +31,6 @@ PAYMENT_REF_NUM BOOLEAN,
 TIN_NUM VARCHAR(20),
 DATE_REG DATE,
 QUALIFICATION VARCHAR(10)
-#FOREIGN KEY (EMM_CODE) REFERENCES emission(EMM_CODE),
-#FOREIGN KEY (DL_NUM) REFERENCES driver_license(DL_NUM)
 );
 
 CREATE TABLE vehicle_info(
@@ -43,10 +38,7 @@ VIN VARCHAR(20) KEY NOT NULL,
 PLATE_NUM VARCHAR(20),
 VEH_CLASS INT,
 VEH_COLOR VARCHAR(20)
-#FOREIGN KEY (APP_CODE) REFERENCES applicant(APP_CODE)
 );
-
-
 
 CREATE TABLE car_model(
 CM_CODE VARCHAR(20) KEY NOT NULL,
@@ -59,7 +51,6 @@ CAR_TYPE VARCHAR(20)
 CREATE TABLE registrar(
 BRANCH_CODE INT KEY NOT NULL,
 BRANCH_LOC VARCHAR(40)
-#FOREIGN KEY (REGION_CODE) REFERENCES registration(REGION_CODE),
 );
 
 CREATE TABLE region(
@@ -83,7 +74,6 @@ USERPASS VARCHAR(20),
 acct_type VARCHAR(10)
 );
 
-#ALTER TABLE vehicle_info AUTO_INCREMENT = 0000;
 ALTER TABLE vehicle_info
 ADD COLUMN(
 APP_CODE INT, FOREIGN KEY (APP_CODE) REFERENCES applicant(APP_CODE),
@@ -114,10 +104,6 @@ REGION_CODE VARCHAR(20) , FOREIGN KEY (REGION_CODE) REFERENCES region(REGION_COD
 );
 
 ALTER TABLE emission AUTO_INCREMENT = 300;
-/*ALTER TABLE emission
-ADD COLUMN(
-VIN VARCHAR(20) , FOREIGN KEY (VIN) REFERENCES vehicle_info(VIN)
-);*/
 
 INSERT INTO region(REGION_CODE) VALUES("Region 1");
 INSERT INTO region(REGION_CODE) VALUES("Region 2");
@@ -191,7 +177,7 @@ INSERT INTO account(USERNAME,USERPASS, acct_type)
 	VALUES("user1","password","user");
 
 INSERT INTO applicant(LAST_NAME, FIRST_NAME, MID_NAME, BIRTHDAY, AGE, SEX ,ADDRESS , GARAGE , CONT_NUM, BRANCH_CODE, REGION_CODE, USERNAME,DL_NUM)
-	VALUES("Daliuag", "Ronan", "Gavino", "2002-07-11",  (DATE_FORMAT(FROM_DAYS(DATEDIFF(NOW(),BIRTHDAY)), '%Y') + 0),"M", "etc", 1,  "0905722757", "010012504", 
+	VALUES("Gonzales", "Max", "Lore", "2002-07-11",  (DATE_FORMAT(FROM_DAYS(DATEDIFF(NOW(),BIRTHDAY)), '%Y') + 0),"M", "etc", 1,  "0905722757", "010012504", 
     (SELECT region.REGION_CODE FROM registrar inner join region where BRANCH_CODE='010023500' and region.REGION_CODE=registrar.REGION_CODE),"user1","112");
   
 #CAR INFO 1
@@ -240,9 +226,9 @@ UPDATE form, emission Set Qualification = CASE WHEN CERT_COVER=1 and POLICE_CLEA
                 and emission.CERT_EMM_COMPLIANCE = 1 and emission.OG_SALES_INV = 1 
                 then '1' else '0' end where emission.EMM_CODE=form.EMM_CODE;    
 
-UPDATE vehicle_info, applicant
+UPDATE vehicle_info, applicant, registrar, emission, form
 set PLATE_NUM = 
-	CASE applicant.REGION_CODE
+	CASE registrar.REGION_CODE
 		WHEN 'Region 1' THEN  concat('AAA ','0',vehicle_info.EMM_CODE)
         WHEN 'Region 2' THEN  concat('BAA ','0',vehicle_info.EMM_CODE)
         WHEN 'Region 3' THEN  concat('CAA ','0',vehicle_info.EMM_CODE)
@@ -260,76 +246,5 @@ set PLATE_NUM =
         WHEN 'NCR' THEN  concat('OAA ','0',vehicle_info.EMM_CODE)
         WHEN 'CAR' THEN  concat('PAA ','0',vehicle_info.EMM_CODE)
 	END
-WHERE vehicle_info.APP_CODE=applicant.APP_CODE;   
-/*
-Select * from applicant inner join vehicle_info WHERE vehicle_info.APP_CODE=applicant.APP_CODE; 
-
-Select FIRST_NAME, MID_NAME, LAST_NAME, SEX, ADDRESS, GARAGE, CONT_NUM As 'Phone #', BRANCH_CODE
-	from applicant where APP_CODE=100;
-
-
-
-SELECT region.REGION_CODE FROM registrar inner join region where BRANCH_CODE=010012504 and region.REGION_CODE=registrar.REGION_CODE;
-#SELECT REGION_CODE FROM registrar inner join region where BRANCH_CODE=;
-#END OF SAMPLE INPUTS
-
-#SELECT QUERIES
-SELECT * FROM account;
-SELECT * FROM applicant;
-SELECT * FROM driver_license;
-SELECT * FROM vehicle_info;
-SELECT * FROM emission;
-SELECT * FROM form;
-SELECT * FROM emission inner join vehicle_info where vehicle_info.EMM_CODE=emission.EMM_CODE;
-
-
-
-#SELECT APPLICANT WITH ALL FORM NUM AND VIN
-#SELECT applicant.APP_CODE, concat(LAST_NAME,', ',FIRST_NAME) As Name, FORM_NUM, VIN FROM applicant inner join form inner join vehicle_info 
-#	where applicant.APP_CODE=form.APP_CODE and applicant.APP_CODE=vehicle_info.APP_CODE and vehicle_info.EMM_CODE=form.EMM_CODE;
-
-/*
-#EMPLOYEE HOME LOAD
-#SELECT applicant.APP_CODE as 'App #', concat(LAST_NAME,', ',FIRST_NAME) As Name, registrar.BRANCH_LOC AS Branch, DATE_ADD(DATE_REG, INTERVAL 10 year) AS DATE, 
-#	if (QUALIFICATION=1, 'Yes', 'No') as Qualification, form.FORM_NUM FROM registration.applicant inner join registration.form inner join registrar where form.BRANCH_CODE=registrar.BRANCH_CODE and 
-#   form.APP_CODE = applicant.APP_CODE;
-    
-#EMPLOYEE UPDATE QUERY
-#SELECT  FORM_NUM, concat(LAST_NAME,', ',FIRST_NAME) As Name, CERT_EMM_COMPLIANCE AS Q1, OG_SALES_INV AS Q2, CERT_COVER AS Q3, POLICE_CLEARANCE AS Q4, CERT_STOCK AS Q5, PAYMENT_REF_NUM AS Q6, VEH_COLOR, PLATE_NUM from applicant inner join emission
-#inner join form inner join vehicle_info where applicant.APP_CODE= 100 and applicant.APP_CODE = vehicle_info.APP_CODE and emission.EMM_CODE=vehicle_info.EMM_CODE and form.EMM_CODE=form.EMM_CODE;
-
-#Working login query
-#SELECT Count(*) AS YN, APP_CODE, FIRST_NAME from account inner join applicant where applicant.USERNAME=account.USERNAME and account.USERNAME='user2' and account.USERPASS = 'password2';
-
-#NewAdminHome
-#Select applicant.APP_CODE AS 'App #',concat(LAST_NAME,', ',FIRST_NAME, ', ' , MID_NAME) As Name, CONT_NUM AS 'Phone Number', applicant.DL_NUM as 'DL #',
-#	 Count(FORM_NUM) as '# of Cars' from applicant inner join form  where applicant.APP_CODE = form.APP_CODE group by applicant.APP_CODE;
-
-#NewAdminHome DELETE
-SET FOREIGN_KEY_CHECKS=0; DELETE applicant, account, form, emission, vehicle_info, driver_license from applicant inner join account inner join form inner join emission
-	inner join vehicle_info inner join driver_license where driver_license.DL_NUM=applicant.DL_NUM and applicant.APP_CODE=vehicle_info.APP_CODE AND form.APP_CODE=applicant.APP_CODE and vehicle_info.EMM_CODE=emission.EMM_CODE
-	AND emission.EMM_CODE=form.EMM_CODE AND applicant.APP_CODE=101 and applicant.USERNAME=account.USERNAME;
-
-#SELECT Count(FORM_NUM) as YN from form inner join applicant where applicant.APP_CODE = form.APP_CODE  group by applicant.APP_CODE;
-
-#usercarhome
-#SELECT applicant.APP_CODE, VIN, if (QUALIFICATION=1, 'Yes', 'No') as Qualification, MODEL, MODEL_YEAR, MANUFACTURER, CAR_TYPE, VEH_CLASS, VEH_COLOR, 
-#            PLATE_NUM from car_model inner join vehicle_info inner join applicant inner join form inner join emission where applicant.APP_CODE = 100
-#            and vehicle_info.APP_CODE=applicant.APP_CODE and vehicle_info.EMM_CODE=emission.EMM_CODE and vehicle_info.CM_CODE = car_model.CM_CODE and form.EMM_CODE = emission.EMM_CODE;
-            
-#----
-*/
-
-
-                
-
-#SELECT applicant.APP_CODE as 'App #', concat(LAST_NAME,', ',FIRST_NAME) As Name, registrar.BRANCH_LOC AS Branch, DATE_ADD(DATE_REG, INTERVAL 10 year) AS DATE, 
-#	if (QUALIFICATION=1, 'Yes', 'No') as Qualification, form.FORM_NUM FROM registration.applicant inner join registration.form inner join registrar 
-#    where form.BRANCH_CODE=registrar.BRANCH_CODE and form.APP_CODE = applicant.APP_CODE;
-    
-
-
-
-    
-
-
+WHERE vehicle_info.APP_CODE=applicant.APP_CODE and vehicle_info.EMM_CODE=emission.EMM_CODE 
+and form.EMM_CODE=emission.EMM_CODE and form.BRANCH_CODE=registrar.BRANCH_CODE;   
